@@ -133,6 +133,32 @@ Add the following to your Claude Desktop configuration file:
 }
 ```
 
+## Local & Claude Code
+
+Build and run the server locally or in Claude Code:
+
+```bash
+# Install dependencies
+npm install
+
+# Install the MCP SDK
+npm install -g zod @modelcontextprotocol/sdk
+
+# Build the project
+# dist/src/index.js will be created
+npm run build
+
+# Connect the mcp server to Claude Code
+claude mcp add \
+  --scope user \
+  --transport stdio \
+  app-store-connect-local \
+  --env APP_STORE_CONNECT_KEY_ID=$APP_STORE_CONNECT_KEY_ID \
+  --env APP_STORE_CONNECT_ISSUER_ID=$APP_STORE_CONNECT_ISSUER_ID \
+  --env APP_STORE_CONNECT_P8_PATH=$APP_STORE_CONNECT_P8_PATH \
+  -- node /path/to/app-store-connect-mcp-server/dist/src/index.js
+```
+
 ## Authentication
 
 ### Required Configuration
@@ -141,7 +167,7 @@ Add the following to your Claude Desktop configuration file:
 3. Note your Key ID and Issuer ID
 4. Set the required environment variables in your configuration:
    - `APP_STORE_CONNECT_KEY_ID`: Your API Key ID
-   - `APP_STORE_CONNECT_ISSUER_ID`: Your Issuer ID  
+   - `APP_STORE_CONNECT_ISSUER_ID`: Your Issuer ID
    - `APP_STORE_CONNECT_P8_PATH`: Path to your .p8 private key file
 
 ### Optional Configuration for Sales & Finance Reports
